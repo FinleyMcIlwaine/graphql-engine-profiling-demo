@@ -1,0 +1,24 @@
+cabal-version:      3.0
+name:               eventlog-influxdb
+version:            0.1.0
+synopsis:
+    Populate an InfluxDB database with eventlog data from a socket
+author:             Finley McIlwaine
+maintainer:         finley@well-typed.com
+build-type:         Simple
+
+executable eventlog-influxdb
+    main-is:
+        Main.hs
+    build-depends:
+        base == 4.16.4.0
+      , async
+      , lens
+
+      , influxdb
+      , ekg-eventlog-influxdb
+      , ekg-eventlog-core
+    default-language: Haskell2010
+    ghc-options:
+      -Wall
+      -threaded

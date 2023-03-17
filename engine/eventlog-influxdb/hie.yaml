@@ -1,0 +1,4 @@
+cradle:
+  cabal:
+    - path: "././"
+      component: "eventlog-influxdb:exe:eventlog-influxdb"
