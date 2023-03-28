@@ -1,3 +1,6 @@
 [submodule "bench/graphql-bench"]
 	path = bench/graphql-bench
 	url = git@github.com:FinleyMcIlwaine/graphql-bench.git
+[submodule "bench/graphql-engine"]
+	path = bench/graphql-engine
+	url = git@github.com:FinleyMcIlwaine/graphql-engine.git

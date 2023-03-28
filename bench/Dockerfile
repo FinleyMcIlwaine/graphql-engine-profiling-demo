@@ -4,5 +4,5 @@ WORKDIR /
 
 RUN apk add postgresql curl
 
-COPY ./chinook /chinook
+COPY ./graphql-engine/server/benchmarks/benchmark_sets/chinook /chinook
 COPY ./run-bench.sh /run-bench.sh

@@ -1,4 +1,4 @@
-FROM finleymcilwaine/graphql-engine
+FROM finleymcilwaine/graphql-engine:base
 
 ###############################################################################
 # Build eventlog-influxdb
@@ -12,3 +12,5 @@ WORKDIR /eventlog-influxdb
 RUN cabal install --overwrite-policy=always eventlog-influxdb
 
 WORKDIR /
+
+COPY ./run-engine.sh /run-engine.sh
