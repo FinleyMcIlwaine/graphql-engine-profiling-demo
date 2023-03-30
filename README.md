@@ -84,4 +84,5 @@ Enter username `admin` and password `admin`.
 The dashboards from [`./grafana/dashboards`](./grafana/dashboards/) are
 automatically loaded into the instance. To view and interact with them, select
 the "Dashboards" tab:
+
 ![](./assets/dashboards.png)
