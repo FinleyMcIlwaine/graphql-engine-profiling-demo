@@ -81,18 +81,7 @@ requests from the benchmark.
 Navigate to [`localhost:3000`](http://localhost:3000) for the Grafana instance.
 Enter username `admin` and password `admin`.
 
-The InfluxDB instance is preconfigured as a data source in the Grafana
-container, so all you have to do is create a dashboard which visualizes the
-eventlog data from the InfluxDB instance. You can either create your own, or
-import one of the preexisting ones from the
-[`./grafana/dashboards`](./grafana/dashboards/) folder in this repository.
-
-#### Importing a dashboard
-
-Under the "Dashboards" tab in the side navigation bar, select "Import":
-![](./assets/import-dashboard.png)
-
-Select the "Upload dashboard JSON file" option and upload one of the dashboard
-files in the [`./grafana/dashboards`](./grafana/dashboards/) folder. When
-prompted to select the InfluxDB data source, select the preconfigured one:
-![](./assets/influxdb-datasource.png)
+The dashboards from [`./grafana/dashboards`](./grafana/dashboards/) are
+automatically loaded into the instance. To view and interact with them, select
+the "Dashboards" tab:
+![](./assets/dashboards.png)

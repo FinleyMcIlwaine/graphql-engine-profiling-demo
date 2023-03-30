@@ -32,6 +32,8 @@ services:
     - "3000:3000"
     volumes:
     - "./grafana/datasources:/etc/grafana/provisioning/datasources"
+    - "./grafana/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml"
+    - "./grafana/dashboards:/var/lib/grafana/dashboards"
     - "grafana-storage:/var/lib/grafana"
 
   graphql-bench:
