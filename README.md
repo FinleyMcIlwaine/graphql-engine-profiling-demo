@@ -1,5 +1,11 @@
 # `graphql-engine` Profiling Demo
 
+**NOTE:** This repository contains important submodules. Either clone with the
+`--recursive` flag or do `git submodule init && git submodule update` after
+cloning.
+
+<hr>
+
 A demo of profiling Hasura's `graphql-engine` using
 [`ghc-eventlog-socket`](https://github.com/bgamari/ghc-eventlog-socket) and
 [`eventlog-live`](https://github.com/mpickering/eventlog-live). Components:
@@ -20,6 +26,41 @@ A demo of profiling Hasura's `graphql-engine` using
   of this together and run it all with a single command.
 
 ## Usage
+
+### Build the images
+
+> **NOTE:** There are `linux/amd64` and `linux/arm64` images published on Docker
+> Hub which are already listed in the `docker-compose.yml`, so building the
+> images yourself is only necessary if the pre-built images are not acceptable
+> for some reason.
+
+Begin by building the base benchmarking image:
+```bash
+docker build ./bench/graphql-bench/app -t "<benchmarking base image tag>"
+```
+
+Next, change the `FROM` clause in `./bench/Dockerfile` to match the
+`<benchmarking base image tag>` from above, then build the benchmarking image:
+```bash
+docker build ./bench -t "<benchmarking image tag>"
+```
+
+Now build the base `graphql-engine` image:
+```bash
+docker build ./engine -f ./engine/base.Dockerfile -t "<graphql-engine base image tag>"
+```
+
+Now change the `FROM` clause in `./engine/main.Dockerfile` to match the
+`<graphql-engine base image tag>` from above, then build the `graphql-engine`
+image:
+```bash
+docker build ./engine -f ./engine/main.Dockerfile -t "<graphql-engine image tag>"
+```
+
+With the images built, replace `finleymcilwaine/graphql-bench:main` with
+`<benchmarking image tag>` and `finleymcilwaine/graphql-engine:main` with
+`<graphql-engine image tag>` in `./docker-compose.yml`. The steps below should
+now work for you.
 
 ### Start the containers
 

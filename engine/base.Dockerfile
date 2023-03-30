@@ -1,5 +1,4 @@
-ARG GRAPHQL_ENGINE_BASE_IMAGE_TAG="fa4c8eb725a7c89f86120b153d091c904251e58fb9861e2217d8e50eeabf04ba.ubuntu.arm64"
-FROM hasura/graphql-engine-base:${GRAPHQL_ENGINE_BASE_IMAGE_TAG}
+FROM hasura/graphql-engine-base:fa4c8eb725a7c89f86120b153d091c904251e58fb9861e2217d8e50eeabf04ba.ubuntu.${TARGETARCH}
 
 ###############################################################################
 # Install dependencies and tooling
