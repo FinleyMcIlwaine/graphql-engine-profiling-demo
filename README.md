@@ -30,10 +30,9 @@ A demo of profiling Hasura's `graphql-engine` using
 ### Build the images
 
 > **NOTE:** There are `linux/amd64` and `linux/arm64` images published on Docker
-> Hub which are already listed in the `docker-compose.yml`, so building the
-> images yourself is only necessary if the pre-built images are not acceptable
-> for some reason. Skip to [Start the containers](#start-the-containers) to use
-> the prebuilt images.
+> Hub which are already listed in the `docker-compose.yml`, but they may be out
+> of date or otherwise unacceptable, hence these instructions.
+> Skip to [Start the containers](#start-the-containers) to use the prebuilt images.
 
 Begin by building the base benchmarking image:
 ```bash

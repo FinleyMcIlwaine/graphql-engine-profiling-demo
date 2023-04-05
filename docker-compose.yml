@@ -50,7 +50,7 @@ services:
     command: "/run-bench.sh"
 
   graphql-engine:
-    image: "finleymcilwaine/graphql-engine:main-dev"
+    image: "finleymcilwaine/graphql-engine:main"
     restart: "always"
     ports:
     - "8080:8080"
