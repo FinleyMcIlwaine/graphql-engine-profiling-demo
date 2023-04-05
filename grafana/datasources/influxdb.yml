@@ -7,11 +7,11 @@ datasources:
   - name: InfluxDB
     type: influxdb
     access: proxy
-    database: graphql_engine_eventlog
+    database: eventlog
     url: http://influxdb:8086
     basicAuth: true
-    basicAuthUser: hasura
+    basicAuthUser: admin
     jsonData:
       httpMode: POST
     secureJsonData:
-      basicAuthPassword: influx_password
+      basicAuthPassword: admin

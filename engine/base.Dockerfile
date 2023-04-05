@@ -38,4 +38,4 @@ RUN git checkout finley/profiling-demo
 # Build graphql-engine
 RUN echo 12345 > "$(git rev-parse --show-toplevel)/server/CURRENT_VERSION"
 
-RUN cabal install --project-file=cabal/dev-sh-prof-eventlog-socket.project exe:graphql-engine
+RUN cabal install --project-file=cabal/dev-sh-prof-eventlog-socket.project graphql-engine

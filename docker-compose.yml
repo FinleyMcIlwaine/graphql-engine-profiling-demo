@@ -19,9 +19,9 @@ services:
     - "8086:8086"
     environment:
       INFLUXDB_HTTP_AUTH_ENABLED: "true"
-      INFLUXDB_DB: "graphql_engine_eventlog"
-      INFLUXDB_ADMIN_USER: "hasura"
-      INFLUXDB_ADMIN_PASSWORD: "influx_password"
+      INFLUXDB_DB: "eventlog"
+      INFLUXDB_ADMIN_USER: "admin"
+      INFLUXDB_ADMIN_PASSWORD: "admin"
 
   grafana:
     # Necessary to get around `database` datasource provisioning bug
@@ -50,7 +50,7 @@ services:
     command: "/run-bench.sh"
 
   graphql-engine:
-    image: "finleymcilwaine/graphql-engine:main"
+    image: "finleymcilwaine/graphql-engine:main-dev"
     restart: "always"
     ports:
     - "8080:8080"
@@ -73,9 +73,9 @@ services:
 
       ## eventlog-influxdb env vars
       GHC_EVENTLOG_INFLUXDB_HOST: "influxdb"
-      GHC_EVENTLOG_INFLUXDB_DB: "graphql_engine_eventlog"
-      GHC_EVENTLOG_INFLUXDB_USERNAME: "hasura"
-      GHC_EVENTLOG_INFLUXDB_PASSWORD: "influx_password"
+      GHC_EVENTLOG_INFLUXDB_DB: "eventlog"
+      GHC_EVENTLOG_INFLUXDB_USERNAME: "admin"
+      GHC_EVENTLOG_INFLUXDB_PASSWORD: "admin"
 
     depends_on:
       postgres:

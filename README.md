@@ -14,7 +14,7 @@ A demo of profiling Hasura's `graphql-engine` using
   [`ghc-eventlog-socket`](https://github.com/bgamari/ghc-eventlog-socket) to
   stream its eventlog over a socket during execution.
 - Another executable (in
-  [./engine/eventlog-influxdb](./engine/eventlog-influxdb/)) which reads data
+  [`eventlog-influxdb`](https://github.com/finleymcilwaine/eventlog-influxdb)) which reads data
   from the eventlog socket and inserts it into an
   [InfluxDB](https://github.com/influxdata/influxdb) database.
 - A benchmarking tool (in [./bench](./bench)) copied from the existing
@@ -37,31 +37,25 @@ A demo of profiling Hasura's `graphql-engine` using
 
 Begin by building the base benchmarking image:
 ```bash
-docker build ./bench/graphql-bench/app -t "<benchmarking base image tag>"
+docker build ./bench/graphql-bench/app -t finleymcilwaine/graphql-bench:base
 ```
 
-Next, change the `FROM` clause in `./bench/Dockerfile` to match the
-`<benchmarking base image tag>` from above, then build the benchmarking image:
+Then build the benchmarking image:
 ```bash
-docker build ./bench -t "<benchmarking image tag>"
+docker build ./bench -t finleymcilwaine/graphql-bench:main
 ```
 
 Now build the base `graphql-engine` image:
 ```bash
-docker build ./engine -f ./engine/base.Dockerfile -t "<graphql-engine base image tag>"
+docker build ./engine -f ./engine/base.Dockerfile -t finleymcilwaine/graphql-engine:base
 ```
 
-Now change the `FROM` clause in `./engine/main.Dockerfile` to match the
-`<graphql-engine base image tag>` from above, then build the `graphql-engine`
-image:
+Then build the `graphql-engine` image:
 ```bash
-docker build ./engine -f ./engine/main.Dockerfile -t "<graphql-engine image tag>"
+docker build ./engine -f ./engine/main.Dockerfile -t finleymcilwaine/graphql-engine:main
 ```
 
-With the images built, replace `finleymcilwaine/graphql-bench:main` with
-`<benchmarking image tag>` and `finleymcilwaine/graphql-engine:main` with
-`<graphql-engine image tag>` in `./docker-compose.yml`. The steps below should
-now work for you.
+With the images built, the steps below should now work for you.
 
 ### Start the containers
 
@@ -79,6 +73,8 @@ requests from the benchmark.
 
 ### Viewing the data
 
+#### With Grafana
+
 Navigate to [`localhost:3000`](http://localhost:3000) for the Grafana instance.
 Enter username `admin` and password `admin`.
 
@@ -87,3 +83,20 @@ automatically loaded into the instance. To view and interact with them, select
 the "Dashboards" tab:
 
 ![](./assets/dashboards.png)
+
+#### Query InfluxDB
+
+To check the data in the InfluxDB instance directly, you can submit queries from
+your local command-line, e.g.:
+
+```bash
+curl -G 'localhost:8086/query?pretty=true&u=admin&p=admin' --data-urlencode "db=eventlog" --data-urlencode "q=SHOW MEASUREMENTS ON eventlog"
+```
+
+Outputs the available measurements.
+
+```bash
+curl -G 'localhost:8086/query?pretty=true&u=admin&p=admin' --data-urlencode "db=eventlog" --data-urlencode "q=SELECT * FROM \"gauge.eventlog.heap_size\""
+```
+
+Outputs the heap size measurement data.
