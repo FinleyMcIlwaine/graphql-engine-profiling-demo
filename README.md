@@ -1,8 +1,7 @@
 # `graphql-engine` Profiling Demo
 
 **NOTE:** This repository contains important submodules. Either clone with the
-`--recursive` flag or do `git submodule init && git submodule update` after
-cloning.
+`--recursive` flag or do `git submodule update --init` after cloning.
 
 <hr>
 
@@ -13,7 +12,7 @@ A demo of profiling Hasura's `graphql-engine` using
   has been instrumented using
   [`ghc-eventlog-socket`](https://github.com/bgamari/ghc-eventlog-socket) to
   stream its eventlog over a socket during execution.
-- Another executable (in
+- Another executable (
   [`eventlog-influxdb`](https://github.com/finleymcilwaine/eventlog-influxdb)) which reads data
   from the eventlog socket and inserts it into an
   [InfluxDB](https://github.com/influxdata/influxdb) database.
@@ -33,6 +32,8 @@ A demo of profiling Hasura's `graphql-engine` using
 > Hub which are already listed in the `docker-compose.yml`, but they may be out
 > of date or otherwise unacceptable, hence these instructions.
 > Skip to [Start the containers](#start-the-containers) to use the prebuilt images.
+
+:warning: **Do not forget to `git submodule init --update` before these steps** :warning:
 
 Begin by building the base benchmarking image:
 ```bash
